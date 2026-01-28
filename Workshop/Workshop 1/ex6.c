@@ -1,46 +1,42 @@
 #include <stdio.h>
+
 int main() {
-    float cc, gk, ck, dtk;
-    char diemChu;
+    float diem_cc, diem_gk, diem_ck; 
+    float diem_tong_ket;
+    char diem_chu; 
 
-    printf("Nhap diem chuyen can (0-10): ");
-    if (scanf("%f", &cc) == 0 || cc < 0 || cc > 10) {
-        printf("Nhap sai roi !\n");
-        return 1;
-    }
+    printf("--- Tinh diem hoc phan ---\n");
+    printf("Nhap diem chuyen can (10%%): ");
+    scanf("%f", &diem_cc);
+    printf("Nhap diem giua ky (30%%): ");
+    scanf("%f", &diem_gk);
+    printf("Nhap diem cuoi ky (60%%): ");
+    scanf("%f", &diem_ck);
 
-    printf("Nhap diem giua ky (0-10): ");
-    if (scanf("%f", &gk) == 0 || gk < 0 || gk > 10) {
-        printf("Nhap sai roi !\n");
-        return 1;
-    }
+    diem_tong_ket = (diem_cc * 0.1) + (diem_gk * 0.3) + (diem_ck * 0.6);
+    printf("Diem tong ket so: %.1f\n", diem_tong_ket);
 
-    printf("Nhap diem cuoi ky (0-10): ");
-    if (scanf("%f", &ck) == 0 || ck < 0 || ck > 10) {
-        printf("Nhap sai roi !\n");
-        return 1;
-    }
-
-    dtk = (cc * 0.1) + (gk * 0.3) + (ck * 0.6);
-
-    if (dtk >= 8.5) {
-        diemChu = 'A';
-    } else if (dtk >= 7.0) {
-        diemChu = 'B';
-    } else if (dtk >= 5.5) {
-        diemChu = 'C';
-    } else if (dtk >= 4.0) {
-        diemChu = 'D';
+    if (diem_tong_ket >= 8.5) {
+        diem_chu = 'A';
+    } else if (diem_tong_ket >= 7.0) {
+        diem_chu = 'B';
+    } else if (diem_tong_ket >= 5.5) {
+        diem_chu = 'C';
+    } else if (diem_tong_ket >= 4.0) {
+        diem_chu = 'D';
     } else {
-        diemChu = 'F';
+        diem_chu = 'F';
     }
 
-    printf("\n%-10s | %-10s | %-10s | %-10s | %-10s\n", "Chuyen can", "Giua ky", "Cuoi ky", "Tong ket", "Loai");
-    printf("%-10.1f | %-10.1f | %-10.1f | %-10.1f | %-10c\n", cc, gk, ck, dtk, diemChu);
-    if (cc >= 4.0 && gk >= 4.0 && ck >= 4.0 && diemChu != 'F') {
-        printf("\nChuc mung! Ban du dieu kien tot nghiep.\n");
+    printf("Diem chu: %c\n", diem_chu);
+
+    if (diem_cc >= 4.0 && diem_gk >= 4.0 && diem_ck >= 4.0 && diem_chu != 'F') {
+        printf("Ket qua: DA TOT NGHIEP (Dat yeu cau)\n");
     } else {
-        printf("\nRat tiec! Ban khong du dieu kien tot nghiep.\n");
+        printf("Ket qua: TRUOT (Can hoc lai)\n");
+        if (diem_chu == 'F') printf("-> Ly do: Diem tong ket qua thap.\n");
+        else printf("-> Ly do: Co diem thanh phan duoi 4.0 (Diem liet).\n");
     }
+
     return 0;
 }
